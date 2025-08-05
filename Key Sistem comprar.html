@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Key Premium - Style</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/lucide@latest/dist/umd/lucide.js" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --primary-color: #ff003c;
+      --secondary-color: #e60036;
+      --bg-primary: #0d0d0d;
+      --bg-secondary: #111;
+      --bg-tertiary: #1a1a1a;
+      --text-primary: #fff;
+      --text-secondary: #ccc;
+      --text-muted: #888;
+      --border-color: #ff003c44;
+      --shadow-primary: #ff003c22;
+      --shadow-hover: #ff003c66;
+    }
+
+    body {
+      font-family: 'Orbitron', sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-image: 
+        radial-gradient(circle at 25% 25%, #ff003c08 0%, transparent 25%),
+        radial-gradient(circle at 75% 75%, #ff003c08 0%, transparent 25%),
+        radial-gradient(var(--primary-color)22 1px, transparent 1px);
+      background-size: 200px 200px, 180px 180px, 40px 40px;
+      z-index: -1;
+      animation: gridMove 60s linear infinite;
+    }
+
+    @keyframes gridMove {
+      0% { background-position: 0 0, 0 0, 0 0; }
+      100% { background-position: 100px 100px, -100px -100px, 100px 100px; }
+    }
+
+    @keyframes glow {
+      0%, 100% { text-shadow: 0 0 10px var(--primary-color), 0 0 20px var(--primary-color); }
+      50% { text-shadow: 0 0 20px var(--primary-color), 0 0 30px var(--primary-color), 0 0 40px var(--primary-color); }
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+
+    @keyframes slideInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .fade-in {
+      animation: slideInUp 0.8s ease-out;
+    }
+
+    header {
+      background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-tertiary) 100%);
+      padding: 20px 40px;
+      border-bottom: 2px solid var(--border-color);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      backdrop-filter: blur(10px);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    header h1 {
+      color: var(--primary-color);
+      font-size: 28px;
+      font-weight: 900;
+      animation: glow 3s ease-in-out infinite;
+      cursor: pointer;
+    }
+
+    nav {
+      display: flex;
+      gap: 30px;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: var(--text-primary);
+      font-weight: 500;
+      font-size: 16px;
+      padding: 8px 16px;
+      border-radius: 6px;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    nav a::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, var(--primary-color)44, transparent);
+      transition: left 0.5s;
+    }
+
+    nav a:hover::before {
+      left: 100%;
+    }
+
+    nav a:hover {
+      color: var(--primary-color);
+      background-color: var(--border-color);
+      transform: translateY(-2px);
+    }
+
+    .hero {
+      text-align: center;
+      padding: 100px 20px 80px;
+      position: relative;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, var(--primary-color)22 0%, transparent 70%);
+      transform: translate(-50%, -50%);
+      z-index: -1;
+      animation: pulse 4s ease-in-out infinite;
+    }
+
+    .hero h2 {
+      color: var(--primary-color);
+      font-size: clamp(28px, 5vw, 48px);
+      font-weight: 900;
+      text-shadow: 0 0 20px var(--primary-color);
+      margin-bottom: 20px;
+      animation: glow 3s ease-in-out infinite;
+    }
+
+    .hero p {
+      max-width: 700px;
+      margin: 20px auto 40px;
+      font-size: 18px;
+      color: var(--text-secondary);
+      font-weight: 400;
+    }
+
+    .cta-button {
+      background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+      color: white;
+      border: none;
+      padding: 16px 32px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: 700;
+      font-family: 'Orbitron', sans-serif;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px var(--shadow-primary);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-button::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transition: left 0.6s;
+    }
+
+    .cta-button:hover::before {
+      left: 100%;
+    }
+
+    .cta-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px var(--shadow-hover);
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 32px;
+      margin: 60px 0 40px;
+      color: var(--primary-color);
+      font-weight: 700;
+      text-shadow: 0 0 15px var(--primary-color);
+      position: relative;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, var(--primary-color), transparent);
+    }
+
+    .planos {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      padding: 0 40px 80px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .card {
+      background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-tertiary) 100%);
+      border: 2px solid var(--border-color);
+      border-radius: 16px;
+      padding: 30px;
+      text-align: center;
+      box-shadow: 0 8px 32px var(--shadow-primary);
+      transition: all 0.4s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary-color), var(--secondary-color), var(--primary-color));
+      transform: scaleX(0);
+      transition: transform 0.4s ease;
+    }
+
+    .card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .card:hover {
+      transform: translateY(-10px) scale(1.02);
+      box-shadow: 0 20px 40px var(--shadow-hover);
+      border-color: var(--primary-color);
+    }
+
+    .card h3 {
+      color: var(--primary-color);
+      margin-bottom: 15px;
+      font-size: 24px;
+      font-weight: 700;
+    }
+
+    .card .price {
+      font-size: 32px;
+      font-weight: 900;
+      color: var(--text-primary);
+      margin: 15px 0;
+    }
+
+    .card .price span {
+      font-size: 14px;
+      color: var(--text-muted);
+    }
+
+    .card p {
+      font-size: 14px;
+      color: var(--text-secondary);
+      margin-bottom: 20px;
+      line-height: 1.5;
+    }
+
+    .card .features {
+      list-style: none;
+      margin: 20px 0;
+      text-align: left;
+    }
+
+    .card .features li {
+      padding: 5px 0;
+      color: var(--text-secondary);
+      font-size: 14px;
+      position: relative;
+      padding-left: 20px;
+    }
+
+    .card .features li::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      color: var(--primary-color);
+      font-weight: bold;
+    }
+
+    .card button {
+      margin-top: 20px;
+      background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+      color: var(--text-primary);
+      border: none;
+      padding: 12px 24px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      font-family: 'Orbitron', sans-serif;
+      transition: all 0.3s ease;
+      width: 100%;
+    }
+
+    .card button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px var(--shadow-hover);
+    }
+
+    .popular {
+      position: relative;
+      transform: scale(1.05);
+    }
+
+    .popular::after {
+      content: 'mais popular';
+      position: absolute;
+      top: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--primary-color);
+      color: white;
+      padding: 5px 15px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .status {
+      padding: 60px 40px;
+      background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-tertiary) 100%);
+      border-top: 2px solid var(--border-color);
+    }
+
+    .status-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .status-box {
+      background: linear-gradient(135deg, var(--bg-tertiary) 0%, var(--bg-secondary) 100%);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 25px;
+      text-align: center;
+      color: var(--text-secondary);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .status-box::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+    }
+
+    .status-box:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px var(--shadow-primary);
+    }
+
+    .status-box h4 {
+      color: var(--primary-color);
+      margin-bottom: 15px;
+      font-size: 18px;
+      font-weight: 600;
+    }
+
+    .status-indicator {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .status-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #00ff41;
+      animation: pulse 2s infinite;
+    }
+
+    .equipe {
+      text-align: center;
+      padding: 60px 40px;
+      background: var(--bg-secondary);
+    }
+
+    .equipe p {
+      max-width: 800px;
+      margin: 0 auto;
+      color: var(--text-secondary);
+      font-size: 16px;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 30px;
+      margin: 40px 0;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .stat-item {
+      text-align: center;
+    }
+
+    .stat-number {
+      font-size: 36px;
+      font-weight: 900;
+      color: var(--primary-color);
+      display: block;
+    }
+
+    .stat-label {
+      font-size: 14px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 40px 20px;
+      background: var(--bg-primary);
+      border-top: 1px solid var(--border-color);
+      font-size: 14px;
+      color: var(--text-muted);
+    }
+
+    footer a {
+      color: var(--primary-color);
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    footer a:hover {
+      text-shadow: 0 0 10px var(--primary-color);
+    }
+
+    .scroll-indicator {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+      z-index: 1000;
+      transition: width 0.1s ease;
+    }
+
+    /* Responsividade */
+    @media (max-width: 768px) {
+      header {
+        padding: 15px 20px;
+        flex-direction: column;
+        gap: 15px;
+      }
+
+      nav {
+        gap: 20px;
+      }
+
+      .hero {
+        padding: 60px 20px 40px;
+      }
+
+      .planos {
+        padding: 0 20px 40px;
+        gap: 20px;
+      }
+
+      .popular {
+        transform: none;
+      }
+
+      .status {
+        padding: 40px 20px;
+      }
+
+      .equipe {
+        padding: 40px 20px;
+      }
+    }
+
+    /* Loading animation */
+    .loading {
+      opacity: 0;
+      animation: fadeIn 1s ease-in-out forwards;
+    }
+
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }
+  </style>
+</head>
+<body class="loading">
+  <div class="scroll-indicator" id="scrollIndicator"></div>
+  
+  <header>
+    <h1 onclick="scrollToTop()">Key Premium</h1>
+    <nav>
+      <a href="#planos">Planos</a>
+      <a href="#status">Status</a>
+      <a href="#equipe">Equipe</a>
+    </nav>
+  </header>
+
+  <section class="hero fade-in">
+    <h2>ACESSO PREMIUM LIBERADO</h2>
+    <p>Compre sua Key Premium e desbloqueie funções exclusivas, atualizações automáticas, suporte prioritário e muito mais. Junte-se a milhares de usuários satisfeitos.</p>
+    <button class="cta-button" onclick="document.getElementById('planos').scrollIntoView({behavior:'smooth'});">
+      Ver Planos Premium
+    </button>
+  </section>
+
+  <h3 class="section-title">PLANOS PREMIUM</h3>
+  <section class="planos" id="planos">
+    <div class="card fade-in">
+      <h3>Mensal</h3>
+      <div class="price">R$ 2,00 <span>Dia</span></div>
+      <p>Ideal para testar nossos recursos premium.</p>
+      <ul class="features">
+        <li>1 dia de acesso completo</li>
+        <li>Suporte básico</li>
+        <li>Atualizações automáticas</li>
+        <li>Acesso a scripts exclusivos</li>
+      </ul>
+      <button onclick="comprar('Dia')">Comprar Dia</button>
+    </div>
+    
+    <div class="card popular fade-in">
+      <h3>Semanal</h3>
+      <div class="price">R$10 <span>/1 Semana</span></div>
+      <p>Melhor custo-benefício para usuários regulares.</p>
+      <ul class="features">
+        <li>7 dias de acesso completo</li>
+        <li>Suporte prioritário</li>
+        <li>Atualizações em primeira mão</li>
+        <li>Scripts beta exclusivos</li>
+        <li>Desconto de 17%</li>
+      </ul>
+      <button onclick="comprar('Semanal')">Comprar Semanal</button>
+    </div>
+    
+    <div class="card fade-in">
+      <h3>Vitalício</h3>
+      <div class="price">R$ 20 <span>/para sempre</span></div>
+      <p>Acesso ilimitado com benefícios VIP exclusivos.</p>
+      <ul class="features">
+        <li>Acesso ilimitado vitalício</li>
+        <li>Suporte VIP 24/7</li>
+        <li>Funcionalidades exclusivas</li>
+        <li>Scripts premium únicos</li>
+        <li>Participação em betas</li>
+        <li>Economia de 67%</li>
+      </ul>
+      <button onclick="comprar('Vitalicio')">Comprar Vitalicio</button>
+    </div>
+  </section>
+
+  <h3 class="section-title">STATUS DO SISTEMA</h3>
+  <section class="status" id="status">
+    <div class="status-grid">
+      <div class="status-box fade-in">
+        <h4>Hora Local</h4>
+        <p id="hora"></p>
+        <div class="status-indicator">
+          <div class="status-dot"></div>
+          <span>Sistema Online</span>
+        </div>
+      </div>
+      
+      <div class="status-box fade-in">
+        <h4>Estatísticas</h4>
+        <p>Usuários ativos hoje: <span id="usuarios">1,247</span></p>
+        <p>Uptime: <span id="uptime">99.9%</span></p>
+      </div>
+      
+      <div class="status-box fade-in">
+        <h4>Logs do Sistema</h4>
+        <p>Novos recursos disponíveis</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="equipe" id="equipe">
+    <h3 class="section-title">NOSSA EQUIPE</h3>
+    <p>Este projeto foi desenvolvido com foco na experiência do usuário, Criado Para facilitar o Uso de exploits</p>
+
+    <p>OWER : Kz Scripts Developrs : Zipp Silent Wolff</p>
+    <div class="stats">
+      <div class="stat-item fade-in">
+        <span class="stat-number" id="counter1">0</span>
+        <span class="stat-label">Usuários Ativos</span>
+      </div>
+      <div class="stat-item fade-in">
+        <span class="stat-number" id="counter2">0</span>
+        <span class="stat-label">Scripts Criados</span>
+      </div>
+      <div class="stat-item fade-in">
+        <span class="stat-number" id="counter3">0</span>
+        <span class="stat-label">Horas Online</span>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Key Premium - Todos os direitos reservados.</p>
+    <p>Contato via <a href="https://wa.me/+55 14 99748-9375" target="_blank">WhatsApp</a></p>
+    <p>Desenvolvido com dedicação para a comunidade</p>
+  </footer>
+
+  <script>
+  	
+    // Funções principais
+    
+    function comprar(plano) {
+  const messages = {
+    'Dia': 'Olá! Quero comprar o plano Diario (R$2,00) da Key Premium. Pode me ajudar?',
+    'Semanal': 'Olá! Quero comprar o plano Semanal (R$10) da Key Premium. Pode me ajudar?',
+    'Vitalicio': 'Olá! Quero comprar o plano VITALÍCIO (R$20,00) da Key Premium. Pode me ajudar?'
+  };
+
+  const numero = '5514997489375'; // sem espaço depois do DDI
+  const texto = messages[plano];
+  if (!texto) return alert('Plano inválido.');
+
+  const link = `https://wa.me/${numero}?text=${encodeURIComponent(texto)}`;
+  window.open(link, '_blank');
+}
+    function scrollToTop() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function atualizarHora() {
+      const agora = new Date();
+      const hora = agora.toLocaleTimeString('pt-BR', { 
+        hour12: false,
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit'
+      });
+      document.getElementById('hora').innerText = `${hora} (GMT-3)`;
+    }
+
+    // Animação dos contadores
+    function animateCounter(id, target, duration = 2000) {
+      const element = document.getElementById(id);
+      const start = 0;
+      const startTime = performance.now();
+      
+      function update(currentTime) {
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        const current = Math.floor(start + (target - start) * progress);
+        
+        element.textContent = current.toLocaleString('pt-BR');
+        
+        if (progress < 1) {
+          requestAnimationFrame(update);
+        }
+      }
+      
+      requestAnimationFrame(update);
+    }
+
+    // Indicador de scroll
+    function updateScrollIndicator() {
+      const scrollTop = window.pageYOffset;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const scrollPercent = (scrollTop / docHeight) * 100;
+      document.getElementById('scrollIndicator').style.width = scrollPercent + '%';
+    }
+
+    // Animação dos elementos ao aparecer na tela
+    function animateOnScroll() {
+      const elements = document.querySelectorAll('.fade-in');
+      
+      elements.forEach(element => {
+        const elementTop = element.getBoundingClientRect().top;
+        const elementVisible = 150;
+        
+        if (elementTop < window.innerHeight - elementVisible) {
+          element.style.opacity = '1';
+          element.style.transform = 'translateY(0)';
+        }
+      });
+    }
+
+    // Simulação de dados dinâmicos
+    function updateStats() {
+      const usuarios = Math.floor(Math.random() * 100) + 1200;
+      const uptime = (99.8 + Math.random() * 0.2).toFixed(1);
+      
+      document.getElementById('usuarios').textContent = usuarios.toLocaleString('pt-BR');
+      document.getElementById('uptime').textContent = uptime + '%';
+    }
+
+    // Event listeners
+    window.addEventListener('scroll', () => {
+      updateScrollIndicator();
+      animateOnScroll();
+    });
+
+    // Inicializaçãodocument.addEventListener('DOMContentLoaded', function() {
+      // Atualizar hora
+      setInterval(atualizarHora, 1000);
+      atualizarHora();
+      
+      // Animar contadores quando visíveis
+      setTimeout(() => {
+        animateCounter('counter1', 2547);
+        animateCounter('counter2', 156);
+        animateCounter('counter3', 8760);
+      }, 1000);
+      
+          // Inicialização
+    document.addEventListener('DOMContentLoaded', function() {
+      // Atualizar hora
+      setInterval(atualizarHora, 1000);
+      atualizarHora();
+      
+      // Animar contadores quando visíveis
+      setTimeout(() => {
+        animateCounter('counter1', 130);
+        animateCounter('counter2', 3);
+        animateCounter('counter3', 500);
+      }, 1000);
+      
+      // Atualizar stats periodicamente
+      setInterval(updateStats, 30000);
+      updateStats();
+      
+      // Animação inicial
+      setTimeout(() => {
+        animateOnScroll();
+      }, 500);
+    });
+
+    // Smooth scroll para links internos
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+  </script>
+</body>
+</html>
